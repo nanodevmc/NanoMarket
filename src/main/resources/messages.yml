@@ -1,0 +1,316 @@
+# ═══════════════════════════════════════════════════════════════
+#   NanoMarket v2.0.0 — messages.yml
+#
+#   Формат:
+#     &#RRGGBB — hex-цвет, &a … &r — обычные коды цветов
+#     {имя}    — подстановка (значения не меняют шрифт и цвет шаблона)
+#     `текст`  — участок в обратных кавычках не переводится в ᴍᴀʟʟ ᴄᴀᴘs
+#   Шрифт включается в config.yml → style.small-caps.
+#   Канал NanoMarket: t.me/NanoDev_mc  |  автор: NanoDev, @radoqi
+#
+#   Палитра:
+#     &#3EE0FF акцент   &#9B6BFF фиолетовый   &#E6EDF7 основной текст
+#     &#8B98AD приглушённый   &#FFD166 деньги   &#6EE7A0 успех
+#     &#FF6B81 ошибка   &#FFB454 внимание   &#7CC4FF ссылки/команды
+#     &#3A4256 рамки
+# ═══════════════════════════════════════════════════════════════
+
+prefix: "{brand} &#3A4256❖ "
+
+# ─── Общее ─────────────────────────────────────────────────────
+no-permission: "&#FF6B81✘ &#8B98ADУ вас нет прав на это действие."
+players-only: "&#FF6B81✘ &#8B98ADЭта команда доступна только игрокам."
+market-offline: "&#FF6B81✘ &#8B98ADМаркет временно недоступен: нет соединения с базой данных."
+economy-missing: "&#FF6B81✘ &#8B98ADЭкономика не подключена (нужны Vault и плагин экономики) — покупки недоступны."
+unknown-command: "&#FF6B81✘ &#8B98ADНеизвестная команда. Список команд: &#7CC4FF`/market help`"
+rate-limited: "&#FFB454⚠ &#8B98ADСлишком много команд — подождите немного."
+purchase-cooldown: "&#FFB454⚠ &#8B98ADПодождите &#E6EDF7{seconds}&#8B98AD сек. перед следующей покупкой."
+error-internal: "&#FF6B81✘ &#8B98ADВнутренняя ошибка. Сообщите администратору."
+
+# ─── Выставление лота ──────────────────────────────────────────
+sell:
+  usage:
+    - "&#7CC4FF➤ &#E6EDF7`/market sell` &#8B98AD<цена> [количество]"
+    - "&#8B98AD   Цена указывается за 1 штуку: &#E6EDF7`150`&#8B98AD, &#E6EDF7`2.5k`&#8B98AD, &#E6EDF7`1m`&#8B98AD."
+    - "&#8B98AD   Без количества продаётся весь стак из руки."
+  no-item: "&#FF6B81✘ &#8B98ADВозьмите предмет в основную руку."
+  invalid-price: "&#FF6B81✘ &#8B98ADНеверная цена: &#E6EDF7{input}&#8B98AD. Пример: &#E6EDF7`100`&#8B98AD или &#E6EDF7`1.5k`&#8B98AD."
+  price-low: "&#FF6B81✘ &#8B98ADЦена слишком низкая. Минимум за 1 шт.: &#FFD166{min} {currency}"
+  price-high: "&#FF6B81✘ &#8B98ADЦена слишком высокая. Максимум за 1 шт.: &#FFD166{max} {currency}"
+  invalid-amount: "&#FF6B81✘ &#8B98ADНеверное количество: &#E6EDF7{input}&#8B98AD. Нужно целое число больше нуля."
+  not-enough-items: "&#FF6B81✘ &#8B98ADВ руке только &#E6EDF7{have}&#8B98AD шт., а вы указали &#E6EDF7{want}&#8B98AD."
+  amount-too-high: "&#FF6B81✘ &#8B98ADВ одном лоте не больше &#E6EDF7{max}&#8B98AD шт."
+  blacklisted: "&#FF6B81✘ &#8B98ADЭтот предмет нельзя продавать на рынке."
+  rejected: "&#FF6B81✘ &#8B98ADПредмет отклонён: в названии или описании запрещённое оформление."
+  custom-denied: "&#FF6B81✘ &#8B98ADПредметы с особым названием и описанием на этом сервере продавать нельзя."
+  limit: "&#FF6B81✘ &#8B98ADДостигнут лимит лотов: &#E6EDF7{limit}&#8B98AD. Снимите что-нибудь с продажи."
+  failed: "&#FF6B81✘ &#8B98ADНе удалось выставить лот. Предмет остался у вас."
+  success: "&#6EE7A0✔ &#E6EDF7Лот выставлен: &#FFD166{amount}× &#E6EDF7{item} &#3A4256│ &#FFD166{unit} {currency} &#8B98ADза шт. &#3A4256│ &#8B98ADвсего &#FFD166{total} {currency}"
+
+# ─── Покупка ───────────────────────────────────────────────────
+buy:
+  not-found: "&#FF6B81✘ &#8B98ADЛот не найден — возможно, его уже сняли."
+  sold-out: "&#FF6B81✘ &#8B98ADЭтот лот уже раскупили."
+  not-enough-stock: "&#FF6B81✘ &#8B98ADВ лоте осталось только &#E6EDF7{available}&#8B98AD шт."
+  not-enough-money: "&#FF6B81✘ &#8B98ADНедостаточно денег: нужно &#FFD166{need} {currency}&#8B98AD, на счёте &#FFD166{balance} {currency}&#8B98AD."
+  no-space: "&#FF6B81✘ &#8B98ADНедостаточно места в инвентаре для покупки."
+  own-lot: "&#FF6B81✘ &#8B98ADНельзя купить собственный лот."
+  economy-error: "&#FF6B81✘ &#8B98ADЭкономика отклонила списание. Деньги не потрачены."
+  failed: "&#FF6B81✘ &#8B98ADНе удалось завершить покупку. Деньги не потрачены."
+  success: "&#6EE7A0✔ &#E6EDF7Покупка: &#FFD166{amount}× &#E6EDF7{item} &#8B98ADу &#E6EDF7{seller} &#3A4256│ &#8B98ADсписано &#FFD166{total} {currency}"
+
+sale-notify: "&#6EE7A0✔ &#E6EDF7{buyer} &#8B98ADкупил &#FFD166{amount}× &#E6EDF7{item} &#8B98ADи вам начислено &#FFD166{total} {currency}"
+
+payout:
+  warning: "&#FFB454◔ &#8B98ADЧерез &#E6EDF7{seconds}&#8B98AD сек. вам выплатят деньги за проданные предметы (&#E6EDF7{count}&#8B98AD шт.)."
+  received: "&#6EE7A0✔ &#8B98ADВыплата за продажи: &#FFD166{total} {currency} &#8B98AD(сделок: &#E6EDF7{count}&#8B98AD)"
+  failed: "&#FF6B81✘ &#8B98ADНе удалось выплатить деньги — попробуем позже."
+
+# ─── Поиск ─────────────────────────────────────────────────────
+search:
+  usage: "&#7CC4FF➤ &#E6EDF7`/market search` &#8B98AD<название предмета или ник продавца>"
+  set: "&#7CC4FF⌖ &#8B98ADПоиск: &#E6EDF7{query}"
+  cleared: "&#7CC4FF⌖ &#8B98ADПоиск сброшен."
+  prompt:
+    - "&#7CC4FF⌖ &#E6EDF7Введите в чат, что искать &#8B98AD(название предмета или ник продавца)."
+    - "&#8B98AD   Напишите &#E6EDF7`отмена`&#8B98AD, чтобы вернуться. У вас {seconds} сек."
+  cancel-word: "отмена"
+  cancelled: "&#8B98AD⌖ Поиск отменён."
+  timeout: "&#8B98AD⌖ Время ввода вышло."
+
+# ─── Мои лоты ──────────────────────────────────────────────────
+mylots:
+  empty: "&#8B98AD❖ У вас нет активных лотов. Выставить: &#7CC4FF`/market sell`"
+cancel:
+  success: "&#6EE7A0✔ &#E6EDF7Лот снят с продажи: &#FFD166{amount}× &#E6EDF7{item} &#8B98ADвозвращено вам."
+  sold-out: "&#8B98AD❖ Лот уже полностью продан — возвращать нечего."
+  not-owner: "&#FF6B81✘ &#8B98ADЭто не ваш лот."
+  not-found: "&#FF6B81✘ &#8B98ADЛот не найден."
+  no-space: "&#FF6B81✘ &#8B98ADОсвободите место в инвентаре: нужно &#E6EDF7{amount}&#8B98AD шт. для возврата."
+  failed: "&#FF6B81✘ &#8B98ADНе удалось снять лот."
+lot-details: "&#7CC4FF➤ &#E6EDF7{item} &#3A4256│ &#8B98ADцена &#FFD166{unit} {currency} &#3A4256│ &#8B98ADпродано &#E6EDF7{sold}&#8B98AD/&#E6EDF7{amount} &#3A4256│ &#8B98ADосталось &#E6EDF7{remaining}"
+
+# ─── История ───────────────────────────────────────────────────
+history:
+  header: "{brand} &#3A4256═══ &#8B98ADистория &#3A4256═══"
+  empty: "&#8B98AD❖ Пока ничего нет."
+  sold: "&#6EE7A0▲ &#8B98AD{time} &#E6EDF7{amount}× {item} &#8B98ADпокупателю &#E6EDF7{buyer} &#8B98ADза &#FFD166{total} {currency} {status}"
+  bought: "&#FF6B81▼ &#8B98AD{time} &#E6EDF7{amount}× {item} &#8B98ADу &#E6EDF7{seller} &#8B98ADза &#FFD166{total} {currency}"
+  paid: "&#6EE7A0✔"
+  unpaid: "&#FFB454◔"
+
+# ─── Справка ───────────────────────────────────────────────────
+help:
+  header: "{brand} &#3A4256═══ &#8B98ADкоманды &#3A4256═══"
+  lines:
+    - "&#7CC4FF`/market` &#3A4256» &#8B98ADоткрыть рынок"
+    - "&#7CC4FF`/market sell` &#8B98AD<цена> [кол-во] &#3A4256» &#8B98ADвыставить предмет из руки"
+    - "&#7CC4FF`/market search` &#8B98AD<текст> &#3A4256» &#8B98ADпоиск по рынку"
+    - "&#7CC4FF`/market my` &#3A4256» &#8B98ADмои лоты"
+    - "&#7CC4FF`/market history` &#3A4256» &#8B98ADмои последние сделки"
+  admin:
+    - "&#FFB454`/market admin reload` &#3A4256» &#8B98ADперезагрузить конфиги"
+    - "&#FFB454`/market admin stats` &#3A4256» &#8B98ADстатистика рынка"
+    - "&#FFB454`/market admin payout` &#3A4256» &#8B98ADвыплатить продавцам сейчас"
+    - "&#FFB454`/market admin clearcache` &#3A4256» &#8B98ADсбросить кэш"
+    - "&#FFB454`/market admin import` &#8B98AD<файл> &#3A4256» &#8B98ADимпорт из MonkMarket 1.x"
+    - "&#FFB454`/market admin dbdelete` &#3A4256» &#8B98ADудалить все лоты и продажи"
+    - "&#FFB454`/market admin version` &#3A4256» &#8B98ADверсия и состояние"
+
+# ─── Администрирование ─────────────────────────────────────────
+admin:
+  reloaded: "&#6EE7A0✔ &#8B98ADКонфигурация перезагружена. &#8B98AD(Настройки базы данных применяются после перезапуска.)"
+  cache-cleared: "&#6EE7A0✔ &#8B98ADКэш очищен."
+  payout-started: "&#6EE7A0✔ &#8B98ADВыплата запущена."
+  stats:
+    - "{brand} &#3A4256═══ &#8B98ADстатистика &#3A4256═══"
+    - "&#8B98AD Активных лотов: &#E6EDF7{lots} &#3A4256│ &#8B98ADпредметов: &#E6EDF7{units} &#3A4256│ &#8B98ADпродавцов: &#E6EDF7{sellers}"
+    - "&#8B98AD Всего продаж: &#E6EDF7{sales} &#3A4256│ &#8B98ADпродано штук: &#E6EDF7{sold-units}"
+    - "&#8B98AD Оборот: &#FFD166{turnover} {currency} &#3A4256│ &#8B98ADсегодня: &#FFD166{turnover-today} {currency} &#8B98AD({sales-today} шт.)"
+    - "&#8B98AD Ждут выплаты: &#E6EDF7{unpaid}"
+  version: "&#E6EDF7`v{version}` &#3A4256│ &#8B98ADБД: &#E6EDF7{database} &#3A4256│ &#8B98ADэкономика: &#E6EDF7{economy} &#3A4256│ &#8B98ADсервер: &#E6EDF7{server}"
+  channel: "&#8B98ADGitHub: &#7CC4FF`github.com/nanodevmc/NanoMarket` &#3A4256│ &#8B98ADканал: &#7CC4FF`t.me/NanoDev_mc` &#3A4256│ &#8B98ADавтор: &#E6EDF7`NanoDev` &#7CC4FF`@radoqi`"
+  dbdelete:
+    warning:
+      - "&#FF6B81⚠ &#FFB454ВНИМАНИЕ! &#E6EDF7Будут удалены ВСЕ лоты и история продаж."
+      - "&#8B98AD   Предметы из лотов пропадут, отменить нельзя."
+      - "&#8B98AD   Подтвердите: &#7CC4FF`/market admin dbdelete confirm` &#8B98AD(в течение {seconds} сек.)"
+    no-request: "&#FF6B81✘ &#8B98ADСначала выполните &#7CC4FF`/market admin dbdelete`&#8B98AD — подтверждение не запрошено или истекло."
+    done: "&#6EE7A0✔ &#8B98ADМаркет очищен: лотов удалено &#E6EDF7{lots}&#8B98AD, продаж &#E6EDF7{sales}&#8B98AD."
+    alert: "&#FF6B81⚠ &#8B98ADМаркет был очищен: {who}."
+  import:
+    usage: "&#7CC4FF➤ &#E6EDF7`/market admin import` &#8B98AD<путь к market.db от MonkMarket 1.x>"
+    done: "&#6EE7A0✔ &#8B98ADИмпорт завершён: перенесено лотов &#E6EDF7{imported}&#8B98AD, пропущено &#E6EDF7{skipped}&#8B98AD."
+    failed: "&#FF6B81✘ &#8B98ADИмпорт не удался: &#E6EDF7{error}"
+
+# ─── Сортировка (названия режимов) ─────────────────────────────
+sort:
+  newest: "Сначала новые"
+  price-asc: "Сначала дешёвые"
+  price-desc: "Сначала дорогие"
+  name: "По названию"
+
+# ─── Меню ──────────────────────────────────────────────────────
+gui:
+  browse:
+    title: "{brand} &#3A4256❖ &#8B98ADРынок"
+    header:
+      name: "&#3EE0FF❖ &#E6EDF7Рынок предметов"
+      lore:
+        - "&#3A4256────────────────"
+        - "&#8B98AD➤ Баланс: &#FFD166{balance} {currency}"
+        - "&#8B98AD➤ Лотов в списке: &#E6EDF7{total}"
+        - "&#8B98AD➤ Сортировка: &#E6EDF7{sort}"
+        - "&#8B98AD➤ Поиск: &#E6EDF7{query}"
+    lot:
+      lore:
+        - "&#3A4256────────────────"
+        - "&#8B98AD➤ Цена за 1 шт.: &#FFD166{unit} {currency}"
+        - "&#8B98AD➤ В наличии: &#E6EDF7{stock} шт."
+        - "&#8B98AD➤ Всё лотом: &#FFD166{total} {currency}"
+        - "&#8B98AD➤ Продавец: &#E6EDF7{seller} &#3A4256· &#8B98AD{age}"
+        - ""
+        - "&#7CC4FF▶ &#E6EDF7Нажмите, чтобы купить"
+    empty:
+      name: "&#8B98AD❖ Здесь пока пусто"
+      lore:
+        - "&#8B98ADПо этому запросу лотов нет."
+        - "&#8B98ADВыставить свой: &#7CC4FF`/market sell`"
+  nav:
+    prev:
+      name: "&#3EE0FF◀ &#E6EDF7Назад"
+      lore:
+        - "&#8B98ADСтраница &#E6EDF7{page}&#8B98AD из &#E6EDF7{pages}"
+    next:
+      name: "&#E6EDF7Вперёд &#3EE0FF▶"
+      lore:
+        - "&#8B98ADСтраница &#E6EDF7{page}&#8B98AD из &#E6EDF7{pages}"
+    page:
+      name: "&#E6EDF7Страница &#3EE0FF{page}&#8B98AD/&#3EE0FF{pages}"
+      lore:
+        - "&#8B98ADВсего лотов: &#E6EDF7{total}"
+    mylots:
+      name: "&#FFD166✦ &#E6EDF7Мои лоты"
+      lore:
+        - "&#8B98ADАктивных: &#E6EDF7{lots}&#8B98AD из &#E6EDF7{limit}"
+        - ""
+        - "&#7CC4FF▶ &#E6EDF7Открыть"
+    refresh:
+      name: "&#7CC4FF↻ &#E6EDF7Обновить"
+      lore:
+        - "&#8B98ADПодгрузить свежий список."
+    sort:
+      name: "&#9B6BFF⇅ &#E6EDF7Сортировка"
+      lore:
+        - "&#8B98ADСейчас: &#E6EDF7{sort}"
+        - ""
+        - "&#7CC4FF▶ &#E6EDF7Нажмите, чтобы сменить"
+    search:
+      name: "&#7CC4FF⌖ &#E6EDF7Поиск"
+      lore:
+        - "&#8B98ADПо названию предмета или"
+        - "&#8B98ADнику продавца."
+        - ""
+        - "&#7CC4FF▶ &#E6EDF7Нажмите и введите в чат"
+    search-clear:
+      name: "&#FF6B81✘ &#E6EDF7Сбросить поиск"
+      lore:
+        - "&#8B98ADСейчас: &#E6EDF7{query}"
+    back:
+      name: "&#3EE0FF◀ &#E6EDF7К рынку"
+      lore:
+        - "&#8B98ADВернуться к списку лотов."
+  mylots:
+    title: "{brand} &#3A4256❖ &#8B98ADМои лоты"
+    header:
+      name: "&#FFD166✦ &#E6EDF7Мои лоты"
+      lore:
+        - "&#3A4256────────────────"
+        - "&#8B98AD➤ Баланс: &#FFD166{balance} {currency}"
+        - "&#8B98AD➤ Активных лотов: &#E6EDF7{lots}&#8B98AD/&#E6EDF7{limit}"
+    lot:
+      lore:
+        - "&#3A4256────────────────"
+        - "&#8B98AD➤ Цена за 1 шт.: &#FFD166{unit} {currency}"
+        - "&#8B98AD➤ Продано: &#6EE7A0{sold}&#8B98AD из &#E6EDF7{amount}"
+        - "&#8B98AD➤ Осталось: &#E6EDF7{remaining} шт."
+        - "&#8B98AD➤ Выставлен: &#E6EDF7{date}"
+        - ""
+        - "&#7CC4FF▶ &#E6EDF7ЛКМ &#8B98AD— подробности"
+        - "&#FF6B81▶ &#E6EDF7Shift + ПКМ &#8B98AD— снять с продажи"
+    empty:
+      name: "&#8B98AD❖ Лотов нет"
+      lore:
+        - "&#8B98ADВыставить предмет: &#7CC4FF`/market sell`"
+  buy:
+    title: "{brand} &#3A4256❖ &#8B98ADПокупка"
+    lot:
+      lore:
+        - "&#3A4256────────────────"
+        - "&#8B98AD➤ Продавец: &#E6EDF7{seller}"
+        - "&#8B98AD➤ Цена за 1 шт.: &#FFD166{unit} {currency}"
+        - "&#8B98AD➤ В наличии: &#E6EDF7{stock} шт."
+    amount:
+      name: "&#E6EDF7Количество: &#3EE0FF{amount}"
+      lore:
+        - "&#8B98ADИтого: &#FFD166{total} {currency}"
+        - "&#8B98ADОсталось после покупки: &#E6EDF7{left} шт."
+    minus:
+      name: "&#FF6B81⊖ &#E6EDF7−{step}"
+      lore:
+        - "&#8B98ADУменьшить количество."
+    plus:
+      name: "&#6EE7A0⊕ &#E6EDF7+{step}"
+      lore:
+        - "&#8B98ADУвеличить количество."
+    preset:
+      one:
+        name: "&#E6EDF7Взять &#3EE0FF1 &#E6EDF7шт."
+        lore:
+          - "&#8B98ADСтоимость: &#FFD166{total} {currency}"
+      half:
+        name: "&#E6EDF7Взять половину &#3EE0FF({amount})"
+        lore:
+          - "&#8B98ADСтоимость: &#FFD166{total} {currency}"
+      max:
+        name: "&#E6EDF7Взять всё &#3EE0FF({amount})"
+        lore:
+          - "&#8B98ADСтоимость: &#FFD166{total} {currency}"
+    similar:
+      name: "&#9B6BFF✧ &#E6EDF7Другое предложение"
+      lore:
+        - "&#3A4256────────────────"
+        - "&#8B98AD➤ Продавец: &#E6EDF7{seller}"
+        - "&#8B98AD➤ Цена за 1 шт.: &#FFD166{unit} {currency}"
+        - "&#8B98AD➤ В наличии: &#E6EDF7{stock} шт."
+        - ""
+        - "&#7CC4FF▶ &#E6EDF7Перейти к этому лоту"
+    summary:
+      name: "&#FFD166◈ &#E6EDF7Расчёт"
+      lore:
+        - "&#3A4256────────────────"
+        - "&#8B98AD➤ Количество: &#E6EDF7{amount} шт."
+        - "&#8B98AD➤ Цена за 1 шт.: &#FFD166{unit} {currency}"
+        - "&#8B98AD➤ Итого: &#FFD166{total} {currency}"
+        - "&#8B98AD➤ Ваш баланс: &#FFD166{balance} {currency}"
+        - ""
+        - "{status}"
+      ok: "&#6EE7A0✔ Денег хватает"
+      no-money: "&#FF6B81✘ Не хватает {missing} {currency}"
+      no-space: "&#FF6B81✘ Нет места в инвентаре"
+      no-economy: "&#FF6B81✘ Экономика недоступна"
+      own: "&#FFB454⚠ Это ваш собственный лот"
+    confirm:
+      name: "&#6EE7A0✔ &#E6EDF7Купить"
+      lore:
+        - "&#8B98ADСписать &#FFD166{total} {currency}"
+        - "&#8B98ADи выдать &#E6EDF7{amount} шт."
+    cancel:
+      name: "&#FF6B81✘ &#E6EDF7Отмена"
+      lore:
+        - "&#8B98ADВернуться к рынку."
+    progress:
+      calc: "&#FFD166Расчёт…"
+      pay: "&#7CC4FFОплата…"
+      done: "&#6EE7A0Готово!"
+      fail: "&#FF6B81Не получилось"

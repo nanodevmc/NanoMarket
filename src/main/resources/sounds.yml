@@ -1,0 +1,50 @@
+# Звуки NanoMarket. Названия — из enum org.bukkit.Sound (например ENTITY_PLAYER_LEVELUP).
+# enabled: false отключает звук.
+
+open:
+  enabled: true
+  sound: "BLOCK_ENDER_CHEST_OPEN"
+  volume: 0.5
+  pitch: 1.4
+
+click:
+  enabled: true
+  sound: "UI_BUTTON_CLICK"
+  volume: 0.4
+  pitch: 1.2
+
+page:
+  enabled: true
+  sound: "ITEM_BOOK_PAGE_TURN"
+  volume: 0.6
+  pitch: 1.0
+
+purchase:
+  enabled: true
+  sound: "ENTITY_PLAYER_LEVELUP"
+  volume: 1.0
+  pitch: 1.4
+
+sell:
+  enabled: true
+  sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  volume: 1.0
+  pitch: 1.0
+
+payout:
+  enabled: true
+  sound: "ENTITY_ARROW_HIT_PLAYER"
+  volume: 0.8
+  pitch: 1.6
+
+cancel:
+  enabled: true
+  sound: "BLOCK_CHEST_CLOSE"
+  volume: 0.7
+  pitch: 1.0
+
+error:
+  enabled: true
+  sound: "ENTITY_VILLAGER_NO"
+  volume: 0.8
+  pitch: 1.0

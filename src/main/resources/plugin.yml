@@ -1,0 +1,31 @@
+name: NanoMarket
+version: '2.0.0'
+main: io.nano.nanomarket.NanoMarket
+api-version: '1.18'
+authors: [NanoDev]
+website: https://github.com/nanodevmc/NanoMarket
+description: Серверный рынок предметов с оплатой через Vault
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+  market:
+    description: Открыть рынок NanoMarket
+    usage: /<command> [sell|search|my|history|help|admin]
+    aliases: [nm, nanomarket, рынок, маркет]
+
+permissions:
+  nanomarket.use:
+    description: Пользоваться рынком (/market)
+    default: true
+  nanomarket.sell:
+    description: Выставлять предметы на продажу
+    default: true
+  nanomarket.admin:
+    description: Администрирование рынка (/market admin)
+    default: op
+  nanomarket.bypass.limit:
+    description: Не учитывать лимит лотов на игрока
+    default: false
+  nanomarket.bypass.blacklist:
+    description: Продавать предметы из чёрного списка
+    default: false

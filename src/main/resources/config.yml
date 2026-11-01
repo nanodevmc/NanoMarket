@@ -1,0 +1,95 @@
+# ═══════════════════════════════════════════════════════════════
+#   NanoMarket v2.0.0 — config.yml
+#   Тексты — в messages.yml, названия предметов — в items.yml,
+#   звуки — в sounds.yml.
+#   Канал NanoMarket: t.me/NanoDev_mc  |  автор: NanoDev, @radoqi
+# ═══════════════════════════════════════════════════════════════
+config-version: 2
+
+# Уникальное имя ЭТОГО сервера. Если несколько серверов работают с одной
+# базой MySQL, у каждого должно быть своё имя (оно пишется в лоты и продажи).
+server-id: "server1"
+
+# ─── Оформление ────────────────────────────────────────────────
+style:
+  small-caps: true          # шрифт «ᴍᴀʟʟ ᴄᴀᴘs» во всех надписях плагина
+  gradient: true            # градиент в названии ɴᴀɴᴏᴍᴀʀᴋᴇᴛ
+  currency-symbol: "◈"      # значок валюты в надписях: 1 250 ◈
+
+# ─── База данных ───────────────────────────────────────────────
+database:
+  type: SQLITE              # SQLITE | MYSQL
+  table-prefix: "nm_"       # только буквы, цифры и _
+  sqlite:
+    file: "market.db"
+  mysql:
+    host: "localhost"
+    port: 3306
+    name: "nanomarket"
+    user: "root"
+    password: ""
+    use-ssl: false
+
+# ─── Правила рынка ─────────────────────────────────────────────
+market:
+  max-lots-per-player: 45
+  min-price: 1.0            # за 1 штуку
+  max-price: 1000000.0      # за 1 штуку
+  max-amount-per-lot: 2304  # 36 стаков по 64
+  default-sort: NEWEST      # NEWEST | PRICE_ASC | PRICE_DESC | NAME
+  allow-custom-items: true  # предметы с названием, описанием, зачарованиями
+  reject-obfuscated-text: true   # запретить «§k»-текст в названии/описании
+  blacklist:                # что нельзя продавать (nanomarket.bypass.blacklist обходит)
+    - BARRIER
+    - COMMAND_BLOCK
+    - CHAIN_COMMAND_BLOCK
+    - REPEATING_COMMAND_BLOCK
+    - COMMAND_BLOCK_MINECART
+    - STRUCTURE_VOID
+    - STRUCTURE_BLOCK
+    - JIGSAW
+    - BEDROCK
+    - DEBUG_STICK
+    - LIGHT
+    - SPAWNER
+
+# ─── Покупка ───────────────────────────────────────────────────
+purchase:
+  check-inventory-space: true
+  drop-if-no-space: false   # false — отказать, true — бросить излишек под ноги
+  max-per-purchase: 2304
+  cooldown-ms: 1500         # пауза между покупками одного игрока
+
+# ─── Выплата продавцам ─────────────────────────────────────────
+payout:
+  mode: BATCH               # INSTANT — деньги сразу; BATCH — раз в interval-seconds
+  interval-seconds: 60
+  announce: true            # предупреждать продавцов о скорой выплате
+  announce-seconds: 5
+
+# ─── Меню ──────────────────────────────────────────────────────
+gui:
+  page-size: 36             # 1..36
+  purchase-animation: true  # короткая анимация «расчёт → оплата»
+  animation-step-ticks: 6
+  similar-offers: 5         # сколько других предложений показывать при покупке (0..5)
+
+# ─── Защита от спама ───────────────────────────────────────────
+security:
+  click-cooldown-ms: 250
+  max-commands-per-minute: 30
+  dbdelete-confirm-seconds: 30
+
+# ─── Журналы ───────────────────────────────────────────────────
+logging:
+  console: true
+  file: true
+  format: "[{time}] {buyer} купил {amount}x {item} у {seller} за {total}"
+
+# ─── Проверка обновлений ───────────────────────────────────────
+# Выключено, пока не указан адрес файла с последней версией
+# (одна строка вида 2.0.1).
+update-checker:
+  enabled: false
+  version-url: "https://raw.githubusercontent.com/nanodevmc/NanoMarket/main/VERSION.txt"
+  download-url: "https://github.com/nanodevmc/NanoMarket/releases"
